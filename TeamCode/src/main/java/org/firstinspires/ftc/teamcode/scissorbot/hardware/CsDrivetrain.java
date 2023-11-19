@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 //import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class CsDrivetrain {
+    // create drivetrain speed variables and initialize them to null
     public DcMotorEx fl = null;
     public DcMotorEx fr = null;
     public DcMotorEx bl = null;
@@ -17,6 +18,7 @@ public class CsDrivetrain {
     public CsDrivetrain(CsHardware hw) { hardware = hw; }
 
     public void init() {
+        // get hardware mapping for each motor
         fl = hardware.hwMap.get(DcMotorEx.class, "fl");
         fr = hardware.hwMap.get(DcMotorEx.class, "fr");
         bl = hardware.hwMap.get(DcMotorEx.class, "bl");
@@ -30,6 +32,7 @@ public class CsDrivetrain {
         br.setDirection(DcMotor.Direction.FORWARD);
 
         // default settings for motor zero power
+        // the motors will brake when speed is set to 0.
         bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

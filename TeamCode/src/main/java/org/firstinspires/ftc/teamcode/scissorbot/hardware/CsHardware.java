@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.scissorbot.hardware;
 
-import com.qualcomm.hardware.lynx.LynxModule;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+//import com.qualcomm.hardware.lynx.LynxModule;
+//import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -35,6 +35,7 @@ public class CsHardware {
 
         //telemetry.addLine("<h3>Hardware</h3>");
 
+        // initialize drivetrain
         drivetrain.init();
     }
 
