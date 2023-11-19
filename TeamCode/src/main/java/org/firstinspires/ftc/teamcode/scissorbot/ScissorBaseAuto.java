@@ -22,4 +22,10 @@ public class ScissorBaseAuto extends LinearOpMode {
         waitForStart();
         time.reset();
     }
+    public void driveBasic(float speed) {
+        robot.drivetrain.fl.setPower(speed);
+        robot.drivetrain.fr.setPower(speed);
+        robot.drivetrain.bl.setPower(speed);
+        robot.drivetrain.br.setPower(speed);
+    }
 }
