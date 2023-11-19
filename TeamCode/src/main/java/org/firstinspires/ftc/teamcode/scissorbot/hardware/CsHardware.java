@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-import java.util.List;
+//import java.util.List;
 
 public class CsHardware {
     OpMode opMode;
@@ -15,6 +15,7 @@ public class CsHardware {
     HardwareMap hwMap;
 
     public CsDrivetrain drivetrain = new CsDrivetrain(this);
+    public CsImu imu = new CsImu(this);
 
     public CsHardware(OpMode opmode) {
         opMode = opmode;
@@ -35,8 +36,9 @@ public class CsHardware {
 
         //telemetry.addLine("<h3>Hardware</h3>");
 
-        // initialize drivetrain
+        // initialize drivetrain (CsDrivetrain)
         drivetrain.init();
+        imu.init();
     }
 
 }
