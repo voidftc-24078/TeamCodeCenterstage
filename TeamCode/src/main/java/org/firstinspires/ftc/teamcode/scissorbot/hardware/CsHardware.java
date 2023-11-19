@@ -25,6 +25,15 @@ public class CsHardware {
         Telemetry.Log log = telemetry.log();
         hwMap = opMode.hardwareMap;
 
+        //List<LynxModule> allHubs = hwMap.getAll(LynxModule.class);
+        //for (LynxModule hub : allHubs) {
+        //    hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
+        //}
+        //telemetry.setDisplayFormat(Telemetry.DisplayFormat.HTML);
+        //telemetry.setAutoClear(false);
+
+        //telemetry.addLine("<h3>Hardware</h3>");
+
         drivetrain.init();
     }
 
