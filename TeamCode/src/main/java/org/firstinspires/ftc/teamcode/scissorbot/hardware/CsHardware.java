@@ -35,12 +35,13 @@ public class CsHardware {
             hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
         telemetry.setDisplayFormat(Telemetry.DisplayFormat.HTML);
-        telemetry.setAutoClear(false);
+        telemetry.setAutoClear(true);
         telemetry.addLine("<h3>Hardware</h3>");
         telemetry.addLine("init drivetrain");
         // initialize drivetrain (CsDrivetrain)
         drivetrain.init();
         telemetry.addLine("init imu");
         imu.init();
+        telemetry.update();
     }
 }

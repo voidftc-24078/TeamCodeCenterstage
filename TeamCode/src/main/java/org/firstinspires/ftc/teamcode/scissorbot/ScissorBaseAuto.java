@@ -20,6 +20,8 @@ public class ScissorBaseAuto extends LinearOpMode {
 
     Telemetry.Item status;
 
+    private Telemetry.Item autoEncoderLog = null;
+
     public static final double DRIVE_SPEED = 1900;
 
     @Override
@@ -60,6 +62,11 @@ public class ScissorBaseAuto extends LinearOpMode {
             ){
                 sleep(20); // does this need to be here?
                 //periodic();
+                autoEncoderLog.addData("bl velocity", robot.drivetrain.bl.getVelocity());
+                autoEncoderLog.addData("br velocity", robot.drivetrain.br.getVelocity());
+                autoEncoderLog.addData("fl velocity", robot.drivetrain.fl.getVelocity());
+                autoEncoderLog.addData("fr velocity", robot.drivetrain.fr.getVelocity());
+                telemetry.update();
             }
             log("finished drive!");
             //log(opModeIsActive() + " " + robot.drivetrain.areTheMotorsBusy() + " " + (runtime.seconds() < timeoutSeconds));

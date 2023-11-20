@@ -22,8 +22,6 @@ public class CsDrivetrain {
     private Telemetry.Item turningTelemetry = null;
     private Telemetry.Item driveInputTelemetry = null;
 
-
-
     private static final double VELOCITY_MULTIPLIER = 2400;
 
     public CsDrivetrain(CsHardware hw) { hardware = hw; }
@@ -56,21 +54,24 @@ public class CsDrivetrain {
         fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        fl.setVelocityPIDFCoefficients(10, 3, 0, 15);
-        fr.setVelocityPIDFCoefficients(10, 3, 0, 15);
-        bl.setVelocityPIDFCoefficients(10, 3, 0, 15);
-        br.setVelocityPIDFCoefficients(10, 3, 0, 15);
+        //fl.setVelocityPIDFCoefficients(10, 3, 0, 15);
+        //fr.setVelocityPIDFCoefficients(10, 3, 0, 15);
+        //bl.setVelocityPIDFCoefficients(10, 3, 0, 15);
+        //br.setVelocityPIDFCoefficients(10, 3, 0, 15);
 
-        fl.setPositionPIDFCoefficients(10);
-        fr.setPositionPIDFCoefficients(10);
-        bl.setPositionPIDFCoefficients(10);
-        br.setPositionPIDFCoefficients(10);
+        //fl.setPositionPIDFCoefficients(10);
+        //fr.setPositionPIDFCoefficients(10);
+        //bl.setPositionPIDFCoefficients(10);
+        //br.setPositionPIDFCoefficients(10);
 
         if (!hardware.autonomous) {
             driveInputTelemetry = hardware.telemetry.addData("Drive inputs (F/T/S)", "Unknown");
             motorPowerTelemetry = hardware.telemetry.addData("Set wheel vl. (FL/FR/BL/BR)", "Unknown");
+            motorPowerTelemetry.setRetained(true);
+            driveInputTelemetry.setRetained(true);
         } else {
-            turningTelemetry = hardware.telemetry.addData("Wheel turning", "Unknown");
+            turningTelemetry = hardware.telemetry.addData("Wheel turning", "Unknown").setRetained(true);
+            turningTelemetry.setRetained(true);
         }
 
     }
