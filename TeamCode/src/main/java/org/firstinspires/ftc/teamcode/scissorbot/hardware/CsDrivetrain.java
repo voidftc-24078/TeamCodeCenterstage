@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.scissorbot.hardware;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 //import com.qualcomm.robotcore.util.Range;
 
 //import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -15,6 +17,12 @@ public class CsDrivetrain {
     public DcMotorEx br = null;
 
     private CsHardware hardware;
+
+    private Telemetry.Item motorPowerTelemetry = null;
+    private Telemetry.Item turningTelemetry = null;
+    private Telemetry.Item driveInputTelemetry = null;
+
+
 
     private static final double VELOCITY_MULTIPLIER = 2400;
 
@@ -57,8 +65,17 @@ public class CsDrivetrain {
         fr.setPositionPIDFCoefficients(10);
         bl.setPositionPIDFCoefficients(10);
         br.setPositionPIDFCoefficients(10);
+
+        if (!hardware.autonomous) {
+            driveInputTelemetry = hardware.telemetry.addData("Drive inputs (F/T/S)", "Unknown");
+            motorPowerTelemetry = hardware.telemetry.addData("Set wheel vl. (FL/FR/BL/BR)", "Unknown");
+        } else {
+            turningTelemetry = hardware.telemetry.addData("Wheel turning", "Unknown");
+        }
+
     }
     public void drive(double forward, double turn, double side) {
+        driveInputTelemetry.setValue("%.2f %.2f %.2f", forward, turn, side);
         double frontLeftPower  = forward + side + turn;
         double frontRightPower = forward - side - turn;
         double backLeftPower   = forward - side + turn;
@@ -83,6 +100,7 @@ public class CsDrivetrain {
 
     public void setDriveVelocity(double frontLeftVelocity, double frontRightVelocity, double backLeftVelocity,
                                  double backRightVelocity) {
+        motorPowerTelemetry.setValue("%.2f %.2f %.2f %.2f", frontLeftVelocity, frontRightVelocity, backLeftVelocity, backRightVelocity);
         fl.setPower(frontLeftVelocity);
         fr.setPower(frontRightVelocity);
         bl.setPower(backLeftVelocity);
@@ -131,6 +149,25 @@ public class CsDrivetrain {
         int newFrontRightTarget;
         int newBackLeftTarget;
         int newBackRightTarget;
+
+        // Determine new target position, and pass to motor controller
+        newFrontLeftTarget = fl.getCurrentPosition() + (int)(frontLeftInches * COUNTS_PER_INCH);
+        newFrontRightTarget = fr.getCurrentPosition() + (int)(frontRightInches * COUNTS_PER_INCH);
+        newBackLeftTarget = bl.getCurrentPosition() + (int)(backLeftInches * COUNTS_PER_INCH);
+        newBackRightTarget = br.getCurrentPosition() + (int)(backRightInches * COUNTS_PER_INCH);
+        fl.setTargetPosition(newFrontLeftTarget);
+        fr.setTargetPosition(newFrontRightTarget);
+        bl.setTargetPosition(newBackLeftTarget);
+        br.setTargetPosition(newBackRightTarget);
+        // Turn On RUN_TO_POSITION
+        fl.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        fr.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        bl.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        br.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        fl.setVelocity(Math.abs(speed));
+        fr.setVelocity(Math.abs(speed));
+        bl.setVelocity(Math.abs(speed));
+        br.setVelocity(Math.abs(speed));
     }
 
     public boolean areTheMotorsBusy() {
@@ -159,10 +196,8 @@ public class CsDrivetrain {
             br.setVelocity(0);
             return false;
         }
+        turningTelemetry.setValue("%.2f %.2f %.2f %.2f", velocity, error, heading, fl.getVelocity());
         hardware.telemetry.update();
         return true;
     }
-
 }
-
-

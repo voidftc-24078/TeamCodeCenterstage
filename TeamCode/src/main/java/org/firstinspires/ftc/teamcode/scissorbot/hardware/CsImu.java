@@ -22,7 +22,7 @@ public class CsImu {
     }
 
     public void init()    {
-        //headingTelemetry = hardware.telemetry.addData("LAST IMU Heading (Deg)", 0);
+        headingTelemetry = hardware.telemetry.addData("LAST IMU Heading (Deg)", 0);
         imu = hardware.hwMap.get(IMU.class, "imu");
         // TODO: check if these are actually correct
         RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;

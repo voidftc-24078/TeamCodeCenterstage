@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode.scissorbot;
 
+import android.annotation.SuppressLint;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 //import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.scissorbot.hardware.CsHardware;
 
 @Disabled
@@ -15,10 +18,19 @@ public class ScissorBaseAuto extends LinearOpMode {
     CsHardware robot = new CsHardware(this);
     ElapsedTime time = new ElapsedTime();
 
+    Telemetry.Item status;
+
+    public static final double DRIVE_SPEED = 1900;
+
     @Override
     public void runOpMode() {
+        status = telemetry.addData("<h2>BaseAuto</h2>", "initializing");
+        telemetry.log().add("resetting time...");
+        robot.autonomous = true;
         time.reset();
+        telemetry.log().add("initializing robot...");
         robot.init();
+        telemetry.log().add("READY");
         waitForStart();
         time.reset();
     }
@@ -38,6 +50,7 @@ public class ScissorBaseAuto extends LinearOpMode {
         if (opModeIsActive()) {
             robot.drivetrain.encoderSet(speed, frontLeftInches, frontRightInches, backLeftInches, backRightInches);
             runtime.reset();
+            log("started drive!");
             sleep(50);
             robot.drivetrain.areTheMotorsBusy(); // I DON'T KNOW WHY BUT THIS FIXES EVERYTHING
             while ( (opModeIsActive() &&
@@ -48,9 +61,21 @@ public class ScissorBaseAuto extends LinearOpMode {
                 sleep(20); // does this need to be here?
                 //periodic();
             }
+            log("finished drive!");
             //log(opModeIsActive() + " " + robot.drivetrain.areTheMotorsBusy() + " " + (runtime.seconds() < timeoutSeconds));
             robot.drivetrain.autoStopTheMotors();
             sleep(300);
         }
     }
+    @SuppressLint("DefaultLocale")
+    public void log(String str) {
+        str = String.format("[%.2f s]:", time.seconds()) + str;
+        System.out.println("!!!!! AUTO LOG: !!!!!: " + str);
+        robot.log.add(str);
+    }
+
+    //public void encoderDrive(double frontLeftInches, double frontRightInches, double backLeftInches, double backRightInches, double timeoutSeconds) {
+    //    encoderDrive(DRIVE_SPEED, frontLeftInches, frontRightInches, backLeftInches, backRightInches, timeoutSeconds);
+    //}
+
 }
