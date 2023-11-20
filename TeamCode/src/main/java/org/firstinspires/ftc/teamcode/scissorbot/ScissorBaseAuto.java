@@ -62,15 +62,15 @@ public class ScissorBaseAuto extends LinearOpMode {
             ){
                 sleep(20); // does this need to be here?
                 //periodic();
-                autoEncoderLog = robot.telemetry.addData("bl velocity", robot.drivetrain.bl.getVelocity());
-                autoEncoderLog = robot.telemetry.addData("br velocity", robot.drivetrain.br.getVelocity());
-                autoEncoderLog = robot.telemetry.addData("fl velocity", robot.drivetrain.fl.getVelocity());
-                autoEncoderLog = robot.telemetry.addData("fr velocity", robot.drivetrain.fr.getVelocity());
-                autoEncoderLog = robot.telemetry.addData("bl position", robot.drivetrain.bl.getCurrentPosition());
-                autoEncoderLog = robot.telemetry.addData("br position", robot.drivetrain.br.getCurrentPosition());
-                autoEncoderLog = robot.telemetry.addData("fl position", robot.drivetrain.fl.getCurrentPosition());
-                autoEncoderLog = robot.telemetry.addData("fr position", robot.drivetrain.fr.getCurrentPosition());
-                telemetry.update();
+                //autoEncoderLog = robot.telemetry.addData("bl velocity", robot.drivetrain.bl.getVelocity());
+                //autoEncoderLog = robot.telemetry.addData("br velocity", robot.drivetrain.br.getVelocity());
+                //autoEncoderLog = robot.telemetry.addData("fl velocity", robot.drivetrain.fl.getVelocity());
+                //autoEncoderLog = robot.telemetry.addData("fr velocity", robot.drivetrain.fr.getVelocity());
+                //autoEncoderLog = robot.telemetry.addData("bl position", robot.drivetrain.bl.getCurrentPosition());
+                //autoEncoderLog = robot.telemetry.addData("br position", robot.drivetrain.br.getCurrentPosition());
+                //autoEncoderLog = robot.telemetry.addData("fl position", robot.drivetrain.fl.getCurrentPosition());
+                //autoEncoderLog = robot.telemetry.addData("fr position", robot.drivetrain.fr.getCurrentPosition());
+                //telemetry.update();
             }
             log("finished drive!");
             //log(opModeIsActive() + " " + robot.drivetrain.areTheMotorsBusy() + " " + (runtime.seconds() < timeoutSeconds));
