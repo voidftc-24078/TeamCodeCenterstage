@@ -65,7 +65,11 @@ public class ScissorBaseAuto extends LinearOpMode {
                 autoEncoderLog = robot.telemetry.addData("bl velocity", robot.drivetrain.bl.getVelocity());
                 autoEncoderLog = robot.telemetry.addData("br velocity", robot.drivetrain.br.getVelocity());
                 autoEncoderLog = robot.telemetry.addData("fl velocity", robot.drivetrain.fl.getVelocity());
-                autoEncoderLog.addData("fr velocity", robot.drivetrain.fr.getVelocity());
+                autoEncoderLog = robot.telemetry.addData("fr velocity", robot.drivetrain.fr.getVelocity());
+                autoEncoderLog = robot.telemetry.addData("bl position", robot.drivetrain.bl.getCurrentPosition());
+                autoEncoderLog = robot.telemetry.addData("br position", robot.drivetrain.br.getCurrentPosition());
+                autoEncoderLog = robot.telemetry.addData("fl position", robot.drivetrain.fl.getCurrentPosition());
+                autoEncoderLog = robot.telemetry.addData("fr position", robot.drivetrain.fr.getCurrentPosition());
                 telemetry.update();
             }
             log("finished drive!");
