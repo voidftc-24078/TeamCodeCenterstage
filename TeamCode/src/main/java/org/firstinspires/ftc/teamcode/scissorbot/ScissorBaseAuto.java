@@ -62,9 +62,9 @@ public class ScissorBaseAuto extends LinearOpMode {
             ){
                 sleep(20); // does this need to be here?
                 //periodic();
-                autoEncoderLog.addData("bl velocity", robot.drivetrain.bl.getVelocity());
-                autoEncoderLog.addData("br velocity", robot.drivetrain.br.getVelocity());
-                autoEncoderLog.addData("fl velocity", robot.drivetrain.fl.getVelocity());
+                autoEncoderLog = robot.telemetry.addData("bl velocity", robot.drivetrain.bl.getVelocity());
+                autoEncoderLog = robot.telemetry.addData("br velocity", robot.drivetrain.br.getVelocity());
+                autoEncoderLog = robot.telemetry.addData("fl velocity", robot.drivetrain.fl.getVelocity());
                 autoEncoderLog.addData("fr velocity", robot.drivetrain.fr.getVelocity());
                 telemetry.update();
             }

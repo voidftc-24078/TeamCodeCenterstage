@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CsHardware {
     OpMode opMode;
-    Telemetry telemetry;
+    public Telemetry telemetry;
     HardwareMap hwMap;
 
     public CsDrivetrain drivetrain = new CsDrivetrain(this);
