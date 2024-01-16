@@ -30,7 +30,7 @@ public class ScissorOpenCVTest extends OpMode {
 
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
           public void onOpened() {
-            webcam.startStreaming(640, 480, OpenCvCameraRotation.UPRIGHT);
+            webcam.startStreaming(800, 448, OpenCvCameraRotation.UPRIGHT);
           }
 
           public void onError(int errorCode) {
