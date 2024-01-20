@@ -8,6 +8,8 @@ public class ScissorAutoRight extends ScissorBaseAuto{
     public void runOpMode() {
         //initialize robot
         super.runOpMode();
-        encoderDrive(0300, 24,24,24,24,15);
+        encoderDrive(1200, 12,12,12,12, 1);
+        encoderDrive(1200, 84,0,0,84,8);
+        encoderDrive(1000,-5,-5,-5,-5, 2);
     }
 }
