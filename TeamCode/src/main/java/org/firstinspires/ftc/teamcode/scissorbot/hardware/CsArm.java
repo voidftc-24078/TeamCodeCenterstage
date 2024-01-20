@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.scissorbot.hardware;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
 public class CsArm {
     // create arm object and initialize it.
     public DcMotorEx arm = null;
@@ -10,7 +12,7 @@ public class CsArm {
     private CsHardware hardware;
     private Telemetry.Item armTelemetry = null;
     
-    public CsDrivetrain(CsHardware hw) { hardware = hw; }
+    public CsArm(CsHardware hw) { hardware = hw; }
 
     public void init() {
         arm = hardware.hwMap.get(DcMotorEx.class, "arm");
@@ -18,7 +20,7 @@ public class CsArm {
         arm.setDirection(DcMotor.Direction.FORWARD);
         
         // default  the runmode to RUN_USING_ENCODER for now, CsHardware can define otherwise
-        arm.setMode(DcMotor.RunMode,RUN_USING_ENCODER);
+        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         

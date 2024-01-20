@@ -15,6 +15,7 @@ public class CsHardware {
     HardwareMap hwMap;
 
     public CsDrivetrain drivetrain = new CsDrivetrain(this);
+    public CsWrist wrist = new CsWrist(this);
     public CsImu imu = new CsImu(this);
 
     public CsHardware(OpMode opmode) {
@@ -40,6 +41,7 @@ public class CsHardware {
         telemetry.addLine("init drivetrain");
         // initialize drivetrain (CsDrivetrain)
         drivetrain.init();
+        wrist.init();
         telemetry.addLine("init imu");
         imu.init();
         telemetry.update();
