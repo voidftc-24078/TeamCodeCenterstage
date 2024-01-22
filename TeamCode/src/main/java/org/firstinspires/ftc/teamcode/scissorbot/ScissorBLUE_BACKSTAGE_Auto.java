@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.scissorbot;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous(name = "BLUEAutoShort")
-public class ScissorBLUE_SHORT_Auto extends ScissorBaseAuto {
+public class ScissorBLUE_BACKSTAGE_Auto extends ScissorBaseAuto {
     private static final char parkDir = 'L';
 
     @Override

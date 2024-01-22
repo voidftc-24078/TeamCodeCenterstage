@@ -2,8 +2,8 @@ package org.firstinspires.ftc.teamcode.scissorbot;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous(name = "RED_LONG_Auto")
-public class ScissorRED_LONG_Auto extends ScissorBaseAuto {
+@Autonomous(name = "RED_AUDIENCE_Auto")
+public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
     private static final char parkDir = 'L';
     private static final int tilesDriveToCenter = 2;
 
