@@ -10,6 +10,17 @@ public class ScissorBLUE_SHORT_Auto extends ScissorBaseAuto {
     public void runOpMode() {
         // initialize robot
         super.runOpMode();
+        switch (super.robot.zone) {
+            case 1:
+                // zone 1 (LEFT)
+                return;
+            case 2:
+                // zone 2 (CENTER)
+                return;
+            case 3:
+                // zone 3 (RIGHT)
+                return;
+        }
         if (parkDir == 'L') {
             // park left
         } else {
