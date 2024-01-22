@@ -27,6 +27,5 @@ public class ScissorBLUE_LONG_Auto extends ScissorBaseAuto {
         } else {
             // park right
         }
-
     }
 }
