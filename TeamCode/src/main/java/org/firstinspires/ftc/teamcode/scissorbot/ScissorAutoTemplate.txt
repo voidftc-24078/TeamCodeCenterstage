@@ -1,0 +1,13 @@
+package org.firstinspires.ftc.teamcode.scissorbot;
+
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
+@Autonomous(name="${NAME}")
+public class ${NAME} extends ScissorBaseAuto {
+
+    @Override
+    public void runOpMode() {
+        // initialize robot
+        super.runOpMode();
+    }
+}
