@@ -13,7 +13,7 @@ import java.util.List;
 public class CsHardware {
     OpMode opMode;
     public Telemetry telemetry;
-    HardwareMap hwMap;
+    public HardwareMap hwMap;
 
     public int zone = 0;
 
@@ -48,8 +48,10 @@ public class CsHardware {
         wrist.init();
         telemetry.addLine("init imu");
         imu.init();
-        telemetry.addLine("init webcam/pipeline");
-        openCVPipeline.init();
+        if (autonomous) {
+            telemetry.addLine("init webcam/pipeline");
+            openCVPipeline.init();
+        }
         telemetry.update();
     }
 }

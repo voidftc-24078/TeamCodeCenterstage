@@ -1,11 +1,5 @@
 package org.firstinspires.ftc.teamcode.scissorbot.pipelines;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
-
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.scissorbot.hardware.CsHardware;
@@ -24,22 +18,22 @@ import org.openftc.easyopencv.PipelineRecordingParameters;
 
 public class CsOpenCVPipeline {
     OpenCvWebcam webcam = null;
-    private Telemetry.Item pipelineTelemetry = null;
     private CsHardware hardware;
+    private Telemetry.Item pipelineTelemetry = null;
     public CsOpenCVPipeline(CsHardware hw) { hardware = hw; }
     public void init() {
-        pipelineTelemetry = (Telemetry.Item) hardware.telemetry.addLine("initializing 320x240 webcam viewport...");
+        hardware.telemetry.addLine("initializing 320x240 webcam viewport...");
         WebcamName webcamName;
-        webcamName = hardwareMap.get(WebcamName.class, "camera");
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webcamName = hardware.hwMap.get(WebcamName.class, "camera");
+        int cameraMonitorViewId = hardware.hwMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardware.hwMap.appContext.getPackageName());
         webcam = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
-        pipelineTelemetry = (Telemetry.Item) hardware.telemetry.addLine("starting pipeline...");
+        hardware.telemetry.addLine("starting pipeline...");
         webcam.setPipeline(new centerstagePipeline());
 
         webcam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
           public void onOpened() {
             webcam.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
-            pipelineTelemetry = (Telemetry.Item) hardware.telemetry.addLine("done initializing camera!");
+            hardware.telemetry.addLine("done initializing camera!");
           }
           public void onError(int errorCode) {
           }
