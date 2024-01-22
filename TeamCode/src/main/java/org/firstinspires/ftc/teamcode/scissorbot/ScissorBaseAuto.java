@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 //import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.scissorbot.hardware.CsHardware;
+import org.firstinspires.ftc.teamcode.scissorbot.pipelines.CsOpenCVPipeline;
 
 @Disabled
 @Autonomous(name="DO NOT USE!!! AUTO BASE LIBRARY !!!!")
@@ -32,7 +33,10 @@ public class ScissorBaseAuto extends LinearOpMode {
         time.reset();
         telemetry.log().add("initializing robot...");
         robot.init();
+        telemetry.log().add("waiting for opencv...");
+        while (robot.zone==0) {}
         telemetry.log().add("READY");
+        //status = telemetry.addData("<h2>Pipeline</h2>", "initializing");
         waitForStart();
         time.reset();
     }
