@@ -33,8 +33,8 @@ public class ScissorBaseAuto extends LinearOpMode {
         time.reset();
         telemetry.log().add("initializing robot...");
         robot.init();
-        telemetry.log().add("waiting for opencv...");
-        while (robot.zone==0) {}
+        //telemetry.log().add("waiting for opencv...");
+        //while (robot.zone==0) {}
         telemetry.log().add("READY");
         //status = telemetry.addData("<h2>Pipeline</h2>", "initializing");
         waitForStart();
