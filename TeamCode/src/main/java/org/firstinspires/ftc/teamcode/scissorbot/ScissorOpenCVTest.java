@@ -79,8 +79,6 @@ public class ScissorOpenCVTest extends OpMode {
             telemetry.addData("left certainty ", (boolean) (leftValue>centerValue&&leftValue>rightValue));
             telemetry.addData("center certainty ", (boolean) (centerValue>leftValue&&centerValue>rightValue));
             telemetry.addData("right certainty ", (boolean) (rightValue>leftValue&&rightValue>centerValue));
-
-            mat = input;
             return(mat);
         }
     }
