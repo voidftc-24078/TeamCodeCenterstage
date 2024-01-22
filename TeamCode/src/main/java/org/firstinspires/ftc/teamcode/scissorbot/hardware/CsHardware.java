@@ -48,7 +48,7 @@ public class CsHardware {
         wrist.init();
         telemetry.addLine("init imu");
         imu.init();
-        telemetry.addLine("init webcam");
+        telemetry.addLine("init webcam/pipeline");
         openCVPipeline.init();
         telemetry.update();
     }
