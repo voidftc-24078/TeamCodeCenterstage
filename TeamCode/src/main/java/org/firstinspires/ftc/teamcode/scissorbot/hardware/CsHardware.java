@@ -21,6 +21,11 @@ public class CsHardware {
     public CsWrist wrist = new CsWrist(this);
     public CsImu imu = new CsImu(this);
     public CsOpenCVPipeline openCVPipeline = new CsOpenCVPipeline(this);
+    public CsScissor scissor = new CsScissor(this);
+    public CsClaw claw = new CsClaw(this);
+    public CsIntake intake = new CsIntake(this);
+
+    public CsArm arm = new CsArm(this);
 
     public CsHardware(OpMode opmode) {
         opMode = opmode;
@@ -52,6 +57,15 @@ public class CsHardware {
             telemetry.addLine("init webcam/pipeline");
             openCVPipeline.init();
         }
+        telemetry.addLine("init arm");
+        arm.init();
+        telemetry.addLine("init scissor");
+        scissor.init();
+        telemetry.addLine("init claw");
+        claw.init();
+        telemetry.addLine("init intake");
+        intake.init();
+        //telemetry.addData("ZONE = ", zone);
         telemetry.update();
     }
 }

@@ -89,7 +89,7 @@ public class CsOpenCVPipeline {
                 hardware.zone = 3;
             }
 
-            pipelineTelemetry = hardware.telemetry.addData("ZONE = ", hardware.zone);
+            hardware.telemetry.addData("ZONE = ", hardware.zone);
 
             return(mat);
         }

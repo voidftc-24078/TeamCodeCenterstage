@@ -23,6 +23,10 @@ public class CsArm {
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         
         arm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        arm.setPower(0);
+
+        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         
     }
 

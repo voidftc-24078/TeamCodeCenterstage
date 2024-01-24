@@ -93,4 +93,20 @@ public class ScissorBaseAuto extends LinearOpMode {
     //    encoderDrive(DRIVE_SPEED, frontLeftInches, frontRightInches, backLeftInches, backRightInches, timeoutSeconds);
     //}
 
+    public void openClaw() {
+        robot.claw.claw.setPosition(robot.claw.clawOpenPosition);
+    }
+
+    public void closeClaw() {
+        robot.claw.claw.setPosition(robot.claw.clawClosedPosition);
+    }
+
+    public void setWristPosition(double position) {
+        robot.wrist.wrist.setPosition(position);
+    }
+
+    public void setIntakeSpeed(double speed) {
+        robot.intake.intake.setPower(speed);
+    }
+
 }
