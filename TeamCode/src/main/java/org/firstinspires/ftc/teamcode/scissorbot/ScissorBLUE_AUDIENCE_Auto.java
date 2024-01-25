@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 @Autonomous(name = "BLUE_AUDIENCE_Auto")
 public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
     private static final char parkDir = 'L';
-    private static final int tilesDriveToCenter = 3;
+    private static final int tilesDriveToCenter = 1;
 
     private float apriltagLeftDistance = 0f;
 
@@ -29,7 +29,7 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
                 break;
             case 2:
                 // strafe left after placing the pixel on the spike mark
-                apriltagLeftDistance = 0f;
+                apriltagLeftDistance = -apriltagSpacing;
                 encoderDrive(0500,25,25,25,25,10);
                 encoderDrive(1200, -72,72,72,-72,6);
                 turnToHeading(-90);

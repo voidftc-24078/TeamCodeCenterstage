@@ -88,9 +88,9 @@ public class CsOpenCVPipeline {
             boolean centerCertainty = (boolean) (centerValue>leftValue&&centerValue>rightValue);
             boolean rightCertainty = (boolean) (rightValue>leftValue&&rightValue>centerValue);
 
-            pipelineTelemetry = hardware.telemetry.addData("left certainty", (boolean) leftCertainty);
-            pipelineTelemetry = hardware.telemetry.addData("center certainty ", (boolean) centerCertainty);
-            pipelineTelemetry = hardware.telemetry.addData("right certainty ", (boolean) rightCertainty);
+            //pipelineTelemetry = hardware.telemetry.addData("left certainty", (boolean) leftCertainty);
+            //pipelineTelemetry = hardware.telemetry.addData("center certainty ", (boolean) centerCertainty);
+            //pipelineTelemetry = hardware.telemetry.addData("right certainty ", (boolean) rightCertainty);
 
             if (leftCertainty == true && centerCertainty == false && rightCertainty == false) {
                 hardware.zone = 1;
