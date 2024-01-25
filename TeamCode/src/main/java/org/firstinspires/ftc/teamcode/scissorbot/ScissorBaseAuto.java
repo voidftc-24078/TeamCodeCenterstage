@@ -39,6 +39,17 @@ public class ScissorBaseAuto extends LinearOpMode {
         //status = telemetry.addData("<h2>Pipeline</h2>", "initializing");
         waitForStart();
         time.reset();
+        switch (robot.zone) {
+            case 1:
+                log("zone 1 (LEFT)");
+                return;
+            case 2:
+                log("zone 2 (CENTER):");
+                return;
+            case 3:
+                log("zone 3 (RIGHT)");
+                return;
+        }
     }
     public void driveBasic(float speed) {
         robot.drivetrain.fl.setPower(speed);
