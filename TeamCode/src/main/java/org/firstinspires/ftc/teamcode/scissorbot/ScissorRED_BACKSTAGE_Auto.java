@@ -10,19 +10,17 @@ public class ScissorRED_BACKSTAGE_Auto extends ScissorBaseAuto {
 
     private float apriltagSpacing = 6.25f;
 
-
+    private double totalApriltagOffset = 0;
 
     @Override
     public void runOpMode() {
         // initialize robot
         super.runOpMode();
         encoderDrive(0500,48,0,0,48, 15);
-        encoderDrive(0500,3,3,3,3,15);
-        turnToHeading(90);
         switch (super.robot.zone) {
             case 1:
                 // zone 1 (LEFT)
-               apriltagOffset = -apriltagSpacing;
+               apriltagOffset = apriltagSpacing;
                 break;
             case 2:
                 // zone 2 (CENTER)
@@ -30,9 +28,12 @@ public class ScissorRED_BACKSTAGE_Auto extends ScissorBaseAuto {
                 break;
             case 3:
                 // zone 3 (RIGHT)
-                apriltagOffset = apriltagSpacing;
+                apriltagOffset = -apriltagSpacing;
                 break;
         }
+        totalApriltagOffset = 3+apriltagOffset;
+        encoderDrive(0500,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,15);
+        turnToHeading(90);
         if (parkDir == 'L') {
             // park left
         } else {
