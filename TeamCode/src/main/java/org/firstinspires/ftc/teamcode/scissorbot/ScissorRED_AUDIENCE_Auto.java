@@ -14,24 +14,24 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
         switch (super.robot.zone) {
             case 1:
                 // zone 1 (LEFT)
-                return;
+                break;
             case 2:
                 // zone 2 (CENTER)
-                return;
+                break;
             case 3:
                 // zone 3 (RIGHT)
-                return;
+                break;
         }
         switch (tilesDriveToCenter) {
             case 1:
                 // stay the closest to the wall
-                return;
+                break;
             case 2:
                 // strafe right after placing the pixel on the spike mark
-                return;
+                break;
             case 3:
                 // go under the stage door, closer to the alliance's side
-                return;
+                break;
         }
         if (parkDir == 'L') {
             // park left

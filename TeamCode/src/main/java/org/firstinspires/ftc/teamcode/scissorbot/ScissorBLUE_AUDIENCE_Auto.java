@@ -11,7 +11,7 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
 
     private float apriltagSpacing = 6.25f;
 
-    private float aprtiltagOffset = 0; // default to left apriltag
+    private float aprtiltagOffset = 0f; // default to left apriltag
 
     private double totalApriltagDistance = 0;
 
@@ -25,14 +25,12 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
                 apriltagLeftDistance = 17f;
                 encoderDrive(0500, 1.5,1.5,1.5,1.5,15);
                 encoderDrive(1200, -72,72,72,-72,6);
-                turnToHeading(-90);
                 break;
             case 2:
                 // strafe left after placing the pixel on the spike mark
                 apriltagLeftDistance = -apriltagSpacing;
                 encoderDrive(0500,25,25,25,25,10);
                 encoderDrive(1200, -72,72,72,-72,6);
-                turnToHeading(-90);
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
@@ -41,9 +39,9 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
                 encoderDrive(1000, 36,36,36,36,3);
                 //encoderDrive(1000,56,56,56,56,13);
                 encoderDrive(1200, -92,92,92,-92,6);
-                turnToHeading(-90);
                 break;
         }
+        turnToHeading(-90);
         switch (super.robot.zone) {
             case 1:
                 // zone 1 (LEFT)
@@ -59,7 +57,7 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
                 aprtiltagOffset = 2*apriltagSpacing;
                 break;
         }
-        totalApriltagDistance = (float) apriltagLeftDistance + (float) aprtiltagOffset;
+        totalApriltagDistance = apriltagLeftDistance + aprtiltagOffset;
         encoderDrive(1000, -totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, -totalApriltagDistance, 15);
         // place pixel
         if (parkDir == 'L') {
