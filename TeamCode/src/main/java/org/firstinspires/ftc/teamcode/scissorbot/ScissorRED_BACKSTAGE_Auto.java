@@ -34,6 +34,7 @@ public class ScissorRED_BACKSTAGE_Auto extends ScissorBaseAuto {
         totalApriltagOffset = 3+apriltagOffset;
         encoderDrive(0500,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,15);
         turnToHeading(90);
+        // now place the pixel
         if (parkDir == 'L') {
             // park left
         } else {

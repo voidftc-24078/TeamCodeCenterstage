@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 //import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -24,6 +25,14 @@ public class ScissorBaseAuto extends LinearOpMode {
     private Telemetry.Item autoEncoderLog = null;
 
     public static final double DRIVE_SPEED = 1900;
+
+    public static final double encoderResolution = 1425.1;
+
+    public int scissorDirection = 0;
+
+    public double armDoEncode = 0;
+
+    public double scissorDoEncode = 0;
 
     @Override
     public void runOpMode() {
@@ -107,11 +116,63 @@ public class ScissorBaseAuto extends LinearOpMode {
     }
 
     public void setWristPosition(double position) {
+        robot.wrist.wristPosition=position;
         robot.wrist.wrist.setPosition(position);
     }
 
     public void setIntakeSpeed(double speed) {
         robot.intake.intake.setPower(speed);
+    }
+
+    public void goUp() {
+        closeClaw();
+        scissorStage1();
+        while (robot.scissor.scissorLeft.isBusy() && robot.scissor.scissorRight.isBusy()) {}
+        scissorStage2();
+    }
+
+    public void scissorStage1 () {
+        robot.arm.arm.setPower(0);
+
+        setWristPosition(robot.wrist.startPositionWrist);
+
+        robot.scissor.scissorLeft.setTargetPosition((int) (0.5 * encoderResolution));
+        robot.scissor.scissorRight.setTargetPosition((int) (0.5 * encoderResolution));
+
+        robot.scissor.scissorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.scissor.scissorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.scissor.scissorLeft.setPower(0.3);
+        robot.scissor.scissorRight.setPower(0.3);
+
+        robot.arm.arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER); // idk why but it works so yeah
+
+        robot.arm.arm.setPower(0.2);
+
+        armDoEncode = 2;
+        scissorDoEncode = 2;
+    }
+
+    public void scissorStage2 () {
+        setWristPosition(0.2);
+
+        robot.scissor.scissorLeft.setTargetPosition((int) (0.68 * encoderResolution));
+        robot.scissor.scissorRight.setTargetPosition((int) (0.68 * encoderResolution));
+
+        robot.scissor.scissorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.scissor.scissorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.scissor.scissorLeft.setPower(0.4);
+        robot.scissor.scissorRight.setPower(0.4);
+
+        robot.arm.arm.setTargetPosition((int) (-0.2 * encoderResolution));
+
+        robot.arm.arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.arm.arm.setPower(0.8);
+
+        armDoEncode = 3;
+        scissorDoEncode = 3;
     }
 
 }
