@@ -17,7 +17,7 @@ import org.openftc.easyopencv.OpenCvWebcam;
 import org.openftc.easyopencv.PipelineRecordingParameters;
 
 public class CsOpenCVPipeline {
-    OpenCvWebcam webcam = null;
+    public OpenCvWebcam webcam = null;
     private CsHardware hardware;
     private Telemetry.Item pipelineTelemetry = null;
     public CsOpenCVPipeline(CsHardware hw) { hardware = hw; }
@@ -38,6 +38,17 @@ public class CsOpenCVPipeline {
           public void onError(int errorCode) {
           }
         });
+    }
+
+    public static class nullPipeline extends OpenCvPipeline {
+        @Override
+        public Mat processFrame(Mat input) {
+            return input;
+        }
+    }
+
+    public void enableNullPipeline () {
+        webcam.setPipeline(new nullPipeline());
     }
 
     class centerstagePipeline extends OpenCvPipeline {

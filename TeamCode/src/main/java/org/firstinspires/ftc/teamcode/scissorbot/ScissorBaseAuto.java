@@ -27,30 +27,24 @@ public class ScissorBaseAuto extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        status = telemetry.addData("<h2>BaseAuto</h2>", "initializing");
-        telemetry.log().add("resetting time...");
+        telemetry.addData("<h2>BaseAuto</h2>", "initializing");
+        telemetry.addLine("resetting time...");
         robot.autonomous = true;
         time.reset();
-        telemetry.log().add("initializing robot...");
+        telemetry.addLine("initializing robot...");
         robot.init();
-        //telemetry.log().add("waiting for opencv...");
+        //telemetry.addLine("waiting for opencv...");
         //while (robot.zone==0) {}
-        telemetry.log().add("READY");
+        telemetry.addLine("READY");
         //status = telemetry.addData("<h2>Pipeline</h2>", "initializing");
+        telemetry.update();
         waitForStart();
         time.reset();
-        switch (robot.zone) {
-            case 1:
-                log("zone 1 (LEFT)");
-                return;
-            case 2:
-                log("zone 2 (CENTER):");
-                return;
-            case 3:
-                log("zone 3 (RIGHT)");
-                return;
-        }
+        telemetry.addData("ZONE", robot.zone);
+        robot.openCVPipeline.enableNullPipeline();
+        telemetry.update();
     }
+
     public void driveBasic(float speed) {
         robot.drivetrain.fl.setPower(speed);
         robot.drivetrain.fr.setPower(speed);
@@ -77,14 +71,14 @@ public class ScissorBaseAuto extends LinearOpMode {
             ){
                 sleep(20); // does this need to be here?
                 //periodic();
-                //autoEncoderLog = robot.telemetry.addData("bl velocity", robot.drivetrain.bl.getVelocity());
-                //autoEncoderLog = robot.telemetry.addData("br velocity", robot.drivetrain.br.getVelocity());
-                //autoEncoderLog = robot.telemetry.addData("fl velocity", robot.drivetrain.fl.getVelocity());
-                //autoEncoderLog = robot.telemetry.addData("fr velocity", robot.drivetrain.fr.getVelocity());
-                //autoEncoderLog = robot.telemetry.addData("bl position", robot.drivetrain.bl.getCurrentPosition());
-                //autoEncoderLog = robot.telemetry.addData("br position", robot.drivetrain.br.getCurrentPosition());
-                //autoEncoderLog = robot.telemetry.addData("fl position", robot.drivetrain.fl.getCurrentPosition());
-                //autoEncoderLog = robot.telemetry.addData("fr position", robot.drivetrain.fr.getCurrentPosition());
+                //autoEncoderLog = telemetry.addData("bl velocity", robot.drivetrain.bl.getVelocity());
+                //autoEncoderLog = telemetry.addData("br velocity", robot.drivetrain.br.getVelocity());
+                //autoEncoderLog = telemetry.addData("fl velocity", robot.drivetrain.fl.getVelocity());
+                //autoEncoderLog = telemetry.addData("fr velocity", robot.drivetrain.fr.getVelocity());
+                //autoEncoderLog = telemetry.addData("bl position", robot.drivetrain.bl.getCurrentPosition());
+                //autoEncoderLog = telemetry.addData("br position", robot.drivetrain.br.getCurrentPosition());
+                //autoEncoderLog = telemetry.addData("fl position", robot.drivetrain.fl.getCurrentPosition());
+                //autoEncoderLog = telemetry.addData("fr position", robot.drivetrain.fr.getCurrentPosition());
                 //telemetry.update();
             }
             log("finished drive!");
