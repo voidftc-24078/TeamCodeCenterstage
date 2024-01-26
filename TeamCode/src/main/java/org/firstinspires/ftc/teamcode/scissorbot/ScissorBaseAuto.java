@@ -175,7 +175,7 @@ public class ScissorBaseAuto extends LinearOpMode {
 
         robot.arm.arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        robot.arm.arm.setPower(0.4);
+        robot.arm.arm.setPower(0.2);
 
         armDoEncode = 2;
         scissorDoEncode = 2;
