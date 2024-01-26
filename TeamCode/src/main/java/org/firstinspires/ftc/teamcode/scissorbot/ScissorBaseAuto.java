@@ -128,7 +128,7 @@ public class ScissorBaseAuto extends LinearOpMode {
         scissorDirection = 2;
         closeClaw();
         scissorStage1();
-        waitScissor();
+        waitScissorArm();
         scissorStage2();
     }
 
@@ -136,11 +136,11 @@ public class ScissorBaseAuto extends LinearOpMode {
         scissorDirection = 3;
         closeClaw();
         scissorStage4();
-        waitScissor();
+        waitScissorArm();
         scissorDown();
-        while (robot.scissor.scissorLeft.isBusy() && robot.scissor.scissorRight.isBusy()) {}
+        waitScissor();
         scissorDown2();
-        while (robot.scissor.scissorLeft.isBusy() && robot.scissor.scissorRight.isBusy()) {}
+        waitScissor();
         //sleep(1800);
         robot.scissor.scissorLeft.setPower(0);
         robot.scissor.scissorRight.setPower(0);
@@ -153,8 +153,25 @@ public class ScissorBaseAuto extends LinearOpMode {
         robot.arm.arm.setPower(0);
     }
 
-    public void waitScissor () {
+    public void adjustScissor(double pos, double speed) {
+        robot.scissor.scissorLeft.setTargetPosition((int) (pos * encoderResolution));
+        robot.scissor.scissorRight.setTargetPosition((int) (pos * encoderResolution));
+
+        robot.scissor.scissorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.scissor.scissorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.scissor.scissorLeft.setPower(speed);
+        robot.scissor.scissorRight.setPower(speed);
+
+        //waitScissor();
+    }
+
+    public void waitScissorArm () {
         while (robot.scissor.scissorLeft.isBusy() && robot.scissor.scissorRight.isBusy() && robot.arm.arm.isBusy()) {} // danger: this IS a while loop...
+    }
+
+    public void waitScissor () {
+        while (robot.scissor.scissorLeft.isBusy() && robot.scissor.scissorRight.isBusy()) {}
     }
 
     public void scissorStage1 () {
