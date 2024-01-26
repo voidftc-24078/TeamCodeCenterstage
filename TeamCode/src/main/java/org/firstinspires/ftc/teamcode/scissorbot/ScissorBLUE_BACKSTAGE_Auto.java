@@ -12,8 +12,6 @@ public class ScissorBLUE_BACKSTAGE_Auto extends ScissorBaseAuto {
 
     private double totalApriltagOffset = 0;
 
-    private static final double parkDriveDistance = 16;
-
     @Override
     public void runOpMode() {
         // initialize robot
