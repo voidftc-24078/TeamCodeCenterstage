@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 @Autonomous(name = "RED_AUDIENCE_Auto")
 public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
     private static final char parkDir = 'L';
-    private static final int tilesDriveToCenter = 1;
+    private static final int tilesDriveToCenter = 3;
 
     private float apriltagLeftDistance = 0f;
 
@@ -23,15 +23,15 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
         switch (tilesDriveToCenter) {
             case 1:
                 // stay the closest to the wall
-                apriltagLeftDistance = 17f;
-                encoderDrive(0500, 1.5, 1.5, 1.5, 1.5, 15);
-                encoderDrive(1200, 72, -72, -72, 72, 6);
+                apriltagLeftDistance = 17.4f;
+                encoderDrive(0500, 2, 2, 2, 2, 15);
+                encoderDrive(1000, 72, -72, -72, 72, 6);
                 break;
             case 2:
                 // strafe left after placing the pixel on the spike mark
                 apriltagLeftDistance = -apriltagSpacing;
                 encoderDrive(0500, 25, 25, 25, 25, 10);
-                encoderDrive(1200, 72, -72, -72, 72, 6);
+                encoderDrive(1000, 72, -72, -72, 72, 6);
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
@@ -39,14 +39,13 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
                 encoderDrive(1000, 0, 40, 40, 0, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);
-                encoderDrive(1200, 92, -92, -92, 92, 6);
+                encoderDrive(1500, 92, -92, -92, 92, 6);
                 break;
         }
-        turnToHeading(-90);
         switch (super.robot.zone) {
             case 1:
                 // zone 1 (LEFT)
-                aprtiltagOffset = 0;
+                aprtiltagOffset = 2 * apriltagSpacing;
                 break;
             case 2:
                 // zone 2 (CENTER)
@@ -55,22 +54,21 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
                 break;
             case 3:
                 // zone 3 (RIGHT)
-                aprtiltagOffset = 2 * apriltagSpacing;
+                aprtiltagOffset = 0;
                 break;
         }
         totalApriltagDistance = apriltagLeftDistance + aprtiltagOffset;
-        encoderDrive(1000, -totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, -totalApriltagDistance, 15);
+        encoderDrive(1000, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 2.5);
+        turnToHeading(90);
         // place pixel
-        turnToHeading(-90);
-        // now place the pixel
         goUp();
-        adjustScissor(0.44, 0.2);
+        adjustScissor(0.4, 0.2);
         setWristPosition(super.robot.wrist.wristPosition + 0.16);
-        encoderDrive(0500, -16, -16, -16, -16, 6);
+        encoderDrive(0500, -15, -15, -15, -15, 3);
         //waitScissor();
         openClaw();
         sleep(800);
-        encoderDrive(1000, 16, 16, 16, 16, 4);
+        encoderDrive(1000, 15, 15, 15, 15, 2.5);
         //while(true); //temp !!
         goDown();
         if (parkDir == 'L') {
