@@ -138,9 +138,12 @@ public class ScissorBaseAuto extends LinearOpMode {
         scissorStage4();
         waitScissor();
         scissorDown();
-        waitScissor();
+        //waitScissor();
+        while (robot.arm.arm.isBusy()) {}
+        sleep(6000);
         robot.scissor.scissorLeft.setPower(0);
         robot.scissor.scissorRight.setPower(0);
+        sleep(800);
         //robot.arm.arm.setPower(0);
         openClaw();
         armDoEncode = 0;
@@ -151,7 +154,7 @@ public class ScissorBaseAuto extends LinearOpMode {
     }
 
     public void waitScissor () {
-        while (robot.scissor.scissorLeft.isBusy() && robot.scissor.scissorRight.isBusy() && robot.arm.arm.isBusy()) {}
+        while (robot.scissor.scissorLeft.isBusy() && robot.scissor.scissorRight.isBusy() && robot.arm.arm.isBusy()) {} // danger: this IS a while loop...
     }
 
     public void scissorStage1 () {
@@ -168,9 +171,11 @@ public class ScissorBaseAuto extends LinearOpMode {
         robot.scissor.scissorLeft.setPower(0.3);
         robot.scissor.scissorRight.setPower(0.3);
 
-        robot.arm.arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER); // idk why but it works so yeah
+        robot.arm.arm.setTargetPosition((int) (0.028 * encoderResolution));
 
-        robot.arm.arm.setPower(0.2);
+        robot.arm.arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.arm.arm.setPower(0.4);
 
         armDoEncode = 2;
         scissorDoEncode = 2;
@@ -227,14 +232,20 @@ public class ScissorBaseAuto extends LinearOpMode {
 
         setWristPosition(robot.wrist.startPositionWrist);
 
-        robot.scissor.scissorLeft.setTargetPosition((int) (0 * encoderResolution));
-        robot.scissor.scissorRight.setTargetPosition((int) (0 * encoderResolution));
+        //robot.scissor.scissorLeft.setTargetPosition((int) (0 * encoderResolution));
+        //robot.scissor.scissorRight.setTargetPosition((int) (0 * encoderResolution));
 
-        robot.scissor.scissorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.scissor.scissorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //robot.scissor.scissorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //robot.scissor.scissorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        robot.scissor.scissorLeft.setPower(-0.3);
-        robot.scissor.scissorRight.setPower(-0.3);
+        //robot.scissor.scissorLeft.setPower(0);
+        //robot.scissor.scissorRight.setPower(0);
+
+        robot.scissor.scissorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.scissor.scissorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        robot.scissor.scissorLeft.setPower(-0.04);
+        robot.scissor.scissorRight.setPower(-0.04);
 
         robot.arm.arm.setTargetPosition((int) (0.001 * encoderResolution));
 
