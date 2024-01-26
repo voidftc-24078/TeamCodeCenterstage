@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.hardware.ServoImplEx;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class CsClaw {
-    public static double clawOpenPosition = 0.78;
-    public static double clawClosedPosition = 0.82;
+    public static double clawOpenPosition = 0.79;
+    public static double clawClosedPosition = 0.75;
 
     public ServoImplEx claw = null;
 

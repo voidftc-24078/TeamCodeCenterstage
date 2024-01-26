@@ -19,6 +19,7 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
     public void runOpMode() {
         // initialize robot
         super.runOpMode();
+        closeClaw();
         switch (tilesDriveToCenter) {
             case 1:
                 // stay the closest to the wall
@@ -60,10 +61,12 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
         totalApriltagDistance = apriltagLeftDistance + aprtiltagOffset;
         encoderDrive(1000, -totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, -totalApriltagDistance, 15);
         // place pixel
-        if (parkDir == 'L') {
-            // park left
-        } else {
-            // park right
-        }
+        goUp();
+        while(true); //temp !!
+        //if (parkDir == 'L') {
+        //    // park left
+        //} else {
+        //    // park right
+        //}
     }
 }

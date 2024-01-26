@@ -125,10 +125,33 @@ public class ScissorBaseAuto extends LinearOpMode {
     }
 
     public void goUp() {
+        scissorDirection = 2;
         closeClaw();
         scissorStage1();
-        while (robot.scissor.scissorLeft.isBusy() && robot.scissor.scissorRight.isBusy()) {}
+        waitScissor();
         scissorStage2();
+    }
+
+    public void goDown () {
+        scissorDirection = 3;
+        closeClaw();
+        scissorStage4();
+        waitScissor();
+        scissorDown();
+        waitScissor();
+        robot.scissor.scissorLeft.setPower(0);
+        robot.scissor.scissorRight.setPower(0);
+        //robot.arm.arm.setPower(0);
+        openClaw();
+        armDoEncode = 0;
+        scissorDoEncode = 0;
+        scissorDirection = 0;
+        sleep(800);
+        robot.arm.arm.setPower(0);
+    }
+
+    public void waitScissor () {
+        while (robot.scissor.scissorLeft.isBusy() && robot.scissor.scissorRight.isBusy() && robot.arm.arm.isBusy()) {}
     }
 
     public void scissorStage1 () {
@@ -175,4 +198,51 @@ public class ScissorBaseAuto extends LinearOpMode {
         scissorDoEncode = 3;
     }
 
+    public void scissorStage4 () {
+        robot.arm.arm.setPower(0);
+
+        setWristPosition(robot.wrist.startPositionWrist);
+
+        robot.scissor.scissorLeft.setTargetPosition((int) (0.6 * encoderResolution));
+        robot.scissor.scissorRight.setTargetPosition((int) (0.6 * encoderResolution));
+
+        robot.scissor.scissorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.scissor.scissorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.scissor.scissorLeft.setPower(0.3);
+        robot.scissor.scissorRight.setPower(0.3);
+
+        robot.arm.arm.setTargetPosition((int) (0 * encoderResolution));
+
+        robot.arm.arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.arm.arm.setPower(-0.5);
+
+        armDoEncode = 4;
+        scissorDoEncode = 4;
+    }
+
+    public void scissorDown () {
+        robot.arm.arm.setPower(0);
+
+        setWristPosition(robot.wrist.startPositionWrist);
+
+        robot.scissor.scissorLeft.setTargetPosition((int) (0 * encoderResolution));
+        robot.scissor.scissorRight.setTargetPosition((int) (0 * encoderResolution));
+
+        robot.scissor.scissorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.scissor.scissorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.scissor.scissorLeft.setPower(-0.3);
+        robot.scissor.scissorRight.setPower(-0.3);
+
+        robot.arm.arm.setTargetPosition((int) (0.001 * encoderResolution));
+
+        robot.arm.arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.arm.arm.setPower(0.3);
+
+        armDoEncode = 5;
+        scissorDoEncode = 5;
+    }
 }
