@@ -11,7 +11,7 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
 
     private float apriltagSpacing = 6.25f;
 
-    private float aprtiltagOffset = 0f; // default to left apriltag
+    private float apriltagOffset = 0f; // default to left apriltag
 
     private double totalApriltagDistance = 0;
 
@@ -24,41 +24,61 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
             case 1:
                 // stay the closest to the wall
                 apriltagLeftDistance = 17.4f;
-                encoderDrive(0500, 2, 2, 2, 2, 15);
+                encoderDrive(0500, 3, 3, 3, 3, 15);
                 encoderDrive(1000, 72, -72, -72, 72, 6);
                 break;
             case 2:
                 // strafe left after placing the pixel on the spike mark
-                apriltagLeftDistance = -apriltagSpacing;
+                apriltagLeftDistance = -apriltagSpacing+1;
                 encoderDrive(0500, 25, 25, 25, 25, 10);
                 encoderDrive(1000, 72, -72, -72, 72, 6);
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
-                apriltagLeftDistance = -37.5f;
+                apriltagLeftDistance = 18.75f;
                 encoderDrive(1000, 0, 40, 40, 0, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);
-                encoderDrive(1500, 92, -92, -92, 92, 6);
+                encoderDrive(1500, 92, -92, -92, 92, 10);
                 break;
         }
-        switch (super.robot.zone) {
-            case 1:
-                // zone 1 (LEFT)
-                aprtiltagOffset = 2 * apriltagSpacing;
-                break;
-            case 2:
-                // zone 2 (CENTER)
-                aprtiltagOffset = 1 * apriltagSpacing;
-                // return because we are already in the right position
-                break;
-            case 3:
-                // zone 3 (RIGHT)
-                aprtiltagOffset = 0;
-                break;
+        if (tilesDriveToCenter == 3) {
+            switch (super.robot.zone) {
+                case 1:
+                    // zone 1 (LEFT)
+                    apriltagOffset = 0;
+                    break;
+                case 2:
+                    // zone 2 (CENTER)
+                    apriltagOffset = 1 * apriltagSpacing;
+                    // return because we are already in the right position
+                    break;
+                case 3:
+                    // zone 3 (RIGHT)
+                    apriltagOffset = 2 * apriltagSpacing;
+                    break;
+            }
+           totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
+            encoderDrive(1000, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 1);
+        } else {
+            switch (super.robot.zone) {
+                case 1:
+                    // zone 1 (LEFT)
+                    apriltagOffset = 2 * apriltagSpacing;
+                    break;
+                case 2:
+                    // zone 2 (CENTER)
+                    apriltagOffset = 1 * apriltagSpacing;
+                    // return because we are already in the right position
+                    break;
+                case 3:
+                    // zone 3 (RIGHT)
+                    apriltagOffset = 0;
+                    break;
+            }
+            totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
+            encoderDrive(1000, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 2);
         }
-        totalApriltagDistance = apriltagLeftDistance + aprtiltagOffset;
-        encoderDrive(1000, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 2.5);
         turnToHeading(90);
         // place pixel
         goUp();
@@ -68,7 +88,7 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
         //waitScissor();
         openClaw();
         sleep(800);
-        encoderDrive(1000, 15, 15, 15, 15, 2.5);
+        encoderDrive(1000, 4, 4, 4, 4, 1);
         //while(true); //temp !!
         goDown();
         if (parkDir == 'L') {
@@ -96,7 +116,7 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
                     encoderDrive(1000, -(15 + (2 * apriltagSpacing)), (15 + 2 * (apriltagSpacing)), (15 + 2 * (apriltagSpacing)), -(15 + 2 * (apriltagSpacing)), 4);
             }
         }
-        encoderDrive(1000, -20, -20, -20, -20, 6);
+        //encoderDrive(1000, -10, -10, -10, -10, 6);
 
     }
 }

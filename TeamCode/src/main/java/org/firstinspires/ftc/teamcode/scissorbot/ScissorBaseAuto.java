@@ -180,8 +180,8 @@ public class ScissorBaseAuto extends LinearOpMode {
         //setWristPosition(robot.wrist.startPositionWrist);
         setWristPosition(robot.wrist.startPositionWrist+0.18);
 
-        robot.scissor.scissorLeft.setTargetPosition((int) (0.6 * encoderResolution));
-        robot.scissor.scissorRight.setTargetPosition((int) (0.6 * encoderResolution));
+        robot.scissor.scissorLeft.setTargetPosition((int) (0.7 * encoderResolution));
+        robot.scissor.scissorRight.setTargetPosition((int) (0.7 * encoderResolution));
 
         robot.scissor.scissorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.scissor.scissorRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
