@@ -19,7 +19,7 @@ public class ScissorBLUE_BACKSTAGE_Auto extends ScissorBaseAuto {
         switch (super.robot.zone) {
             case 1:
                 // zone 1 (LEFT)
-                apriltagOffset = apriltagSpacing;
+                apriltagOffset = -apriltagSpacing;
                 break;
             case 2:
                 // zone 2 (CENTER)
@@ -27,17 +27,17 @@ public class ScissorBLUE_BACKSTAGE_Auto extends ScissorBaseAuto {
                 break;
             case 3:
                 // zone 3 (RIGHT)
-                apriltagOffset = -apriltagSpacing;
+                apriltagOffset = apriltagSpacing;
                 break;
         }
         closeClaw();
-        encoderDrive(0500,0,48,48,48, 15);
-        totalApriltagOffset = 3+apriltagOffset;
+        encoderDrive(0500,0,48,48,0, 15);
+        totalApriltagOffset = 2+apriltagOffset;
         encoderDrive(0500,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,15);
         turnToHeading(-90);
         // now place the pixel
         goUp();
-        adjustScissor(0.44, 0.2);
+        adjustScissor(0.4, 0.2);
         setWristPosition(super.robot.wrist.wristPosition+0.16);
         encoderDrive(0500, -16,-16,-16,-16,6);
         //waitScissor();

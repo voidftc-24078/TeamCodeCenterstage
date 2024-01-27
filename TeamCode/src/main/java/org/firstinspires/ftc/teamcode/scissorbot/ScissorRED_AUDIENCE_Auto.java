@@ -35,7 +35,7 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
-                apriltagLeftDistance = 18.75f;
+                apriltagLeftDistance = 19f;
                 encoderDrive(1000, 0, 40, 40, 0, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);

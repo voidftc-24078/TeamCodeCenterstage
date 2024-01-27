@@ -35,12 +35,12 @@ public class ScissorRED_BACKSTAGE_Auto extends ScissorBaseAuto {
         }
         closeClaw();
         encoderDrive(0500,48,0,0,48, 15);
-        totalApriltagOffset = 3+apriltagOffset;
+        totalApriltagOffset = 2+apriltagOffset;
         encoderDrive(0500,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,15);
         turnToHeading(90);
         // now place the pixel
         goUp();
-        adjustScissor(0.44, 0.2);
+        adjustScissor(0.4, 0.2);
         setWristPosition(super.robot.wrist.wristPosition+0.16);
         encoderDrive(0500, -16,-16,-16,-16,6);
         //waitScissor();

@@ -35,49 +35,33 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
-                apriltagLeftDistance = 18.75f;
+                apriltagLeftDistance = 100f;
                 encoderDrive(1000, 40, 0, 0, 40, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);
                 encoderDrive(1500, -92, 92, 92, -92, 10);
                 break;
         }
+        switch (super.robot.zone) {
+            case 1:
+                // zone 1 (LEFT)
+                apriltagOffset = 0;
+                break;
+            case 2:
+                // zone 2 (CENTER)
+                apriltagOffset = 1 * apriltagSpacing;
+                // return because we are already in the right position
+                break;
+            case 3:
+                // zone 3 (RIGHT)
+                apriltagOffset = 2 * apriltagSpacing;
+                break;
+        }
+        totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
         if (tilesDriveToCenter == 3) {
-            switch (super.robot.zone) {
-                case 1:
-                    // zone 1 (LEFT)
-                    apriltagOffset = 0;
-                    break;
-                case 2:
-                    // zone 2 (CENTER)
-                    apriltagOffset = 1 * apriltagSpacing;
-                    // return because we are already in the right position
-                    break;
-                case 3:
-                    // zone 3 (RIGHT)
-                    apriltagOffset = 2 * apriltagSpacing;
-                    break;
-            }
-            totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
-            encoderDrive(1000, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 1);
+            encoderDrive(1000, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 1);
         } else {
-            switch (super.robot.zone) {
-                case 1:
-                    // zone 1 (LEFT)
-                    apriltagOffset = 2 * apriltagSpacing;
-                    break;
-                case 2:
-                    // zone 2 (CENTER)
-                    apriltagOffset = 1 * apriltagSpacing;
-                    // return because we are already in the right position
-                    break;
-                case 3:
-                    // zone 3 (RIGHT)
-                    apriltagOffset = 0;
-                    break;
-            }
-            totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
-            encoderDrive(1000, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 2);
+            encoderDrive(1000, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 2);
         }
         turnToHeading(-90);
         // place pixel
