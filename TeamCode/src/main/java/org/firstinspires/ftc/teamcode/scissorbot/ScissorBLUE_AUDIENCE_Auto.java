@@ -24,7 +24,7 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
             case 1:
                 // stay the closest to the wall
                 apriltagLeftDistance = 17.4f;
-                encoderDrive(0500, 3, 3, 3, 3, 15);
+                encoderDrive(0500, 2.3, 2.3, 2.3, 2.3, 15);
                 encoderDrive(1000, -72, 72, 72, -72, 6);
                 break;
             case 2:
@@ -35,7 +35,7 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
-                apriltagLeftDistance = 100f;
+                apriltagLeftDistance = 19.5f;
                 encoderDrive(1000, 40, 0, 0, 40, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);
@@ -59,9 +59,9 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
         }
         totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
         if (tilesDriveToCenter == 3) {
-            encoderDrive(1000, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 1);
+            encoderDrive(0500, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 8);
         } else {
-            encoderDrive(1000, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 2);
+            encoderDrive(0500, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 8);
         }
         turnToHeading(-90);
         // place pixel

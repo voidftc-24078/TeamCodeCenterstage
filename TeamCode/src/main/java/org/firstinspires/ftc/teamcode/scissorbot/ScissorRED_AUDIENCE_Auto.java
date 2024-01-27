@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 @Autonomous(name = "RED_AUDIENCE_Auto")
 public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
     private static final char parkDir = 'L';
-    private static final int tilesDriveToCenter = 3;
+    private static final int tilesDriveToCenter = 1;
 
     private float apriltagLeftDistance = 0f;
 
@@ -24,18 +24,18 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
             case 1:
                 // stay the closest to the wall
                 apriltagLeftDistance = 17.4f;
-                encoderDrive(0500, 3, 3, 3, 3, 15);
+                encoderDrive(0500, 2.3, 2.3, 2.3, 2.3, 15);
                 encoderDrive(1000, 72, -72, -72, 72, 6);
                 break;
             case 2:
                 // strafe left after placing the pixel on the spike mark
-                apriltagLeftDistance = -apriltagSpacing+1;
+                apriltagLeftDistance = -apriltagSpacing;
                 encoderDrive(0500, 25, 25, 25, 25, 10);
                 encoderDrive(1000, 72, -72, -72, 72, 6);
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
-                apriltagLeftDistance = 19f;
+                apriltagLeftDistance = 21f;
                 encoderDrive(1000, 0, 40, 40, 0, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);
@@ -59,7 +59,7 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
                     break;
             }
            totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
-            encoderDrive(1000, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 1);
+            encoderDrive(0500, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 8);
         } else {
             switch (super.robot.zone) {
                 case 1:
@@ -77,7 +77,7 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
                     break;
             }
             totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
-            encoderDrive(1000, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 2);
+            encoderDrive(0500, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 8);
         }
         turnToHeading(90);
         // place pixel
