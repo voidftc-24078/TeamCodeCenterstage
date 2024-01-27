@@ -46,7 +46,7 @@ public class ScissorRED_BACKSTAGE_Auto extends ScissorBaseAuto {
         //waitScissor();
         openClaw();
         sleep(800);
-        encoderDrive(1000, 16,16,16,16,4);
+        encoderDrive(1000, 4,4,4,4,4);
         //while(true); //temp !!
         goDown();
         if (parkDir == 'L') {
@@ -65,16 +65,16 @@ public class ScissorRED_BACKSTAGE_Auto extends ScissorBaseAuto {
             // park right
             switch (super.robot.zone) {
                 case 1:
-                    encoderDrive(1000, -15, 15, 15, -15,4);
+                    encoderDrive(1000, -(15+(2*apriltagSpacing)), (15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), 4);
                     break;
                 case 2:
                     encoderDrive(1000, -(15+apriltagSpacing), (15+apriltagSpacing), (15+apriltagSpacing), -(15+apriltagSpacing), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, -(15+(2*apriltagSpacing)), (15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), 4);
+                    encoderDrive(1000, 15, -15, -15, 15,4);
             }
         }
-        encoderDrive(1000, -20, -20,-20,-20, 6);
+        //encoderDrive(1000, -20, -20,-20,-20, 6);
 
     }
 }

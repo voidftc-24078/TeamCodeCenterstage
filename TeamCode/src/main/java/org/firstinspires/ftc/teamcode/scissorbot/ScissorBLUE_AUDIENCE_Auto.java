@@ -15,8 +15,6 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
 
     private double totalApriltagDistance = 0;
 
-    private double travelDist = 15;
-
     @Override
     public void runOpMode() {
         // initialize robot
@@ -26,82 +24,99 @@ public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
             case 1:
                 // stay the closest to the wall
                 apriltagLeftDistance = 17.4f;
-                encoderDrive(0500, 2, 2, 2, 2, 15);
+                encoderDrive(0500, 3, 3, 3, 3, 15);
                 encoderDrive(1000, -72, 72, 72, -72, 6);
                 break;
             case 2:
                 // strafe left after placing the pixel on the spike mark
-                apriltagLeftDistance = apriltagSpacing;
+                apriltagLeftDistance = -apriltagSpacing+1;
                 encoderDrive(0500, 25, 25, 25, 25, 10);
                 encoderDrive(1000, -72, 72, 72, -72, 6);
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
-                apriltagLeftDistance = -60f;
-                encoderDrive(1000, 40, 0, 0, 40, 2);
+                apriltagLeftDistance = 18.75f;
+                encoderDrive(1000, 40, 0, 0, 40, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);
-                encoderDrive(1500, -92, 92, 92, -92, 3);
+                encoderDrive(1500, -92, 92, 92, -92, 10);
                 break;
         }
-        switch (super.robot.zone) {
-            case 1:
-                // zone 1 (LEFT)
-                apriltagOffset = 0;
-                break;
-            case 2:
-                // zone 2 (CENTER)
-                apriltagOffset = 1 * apriltagSpacing;
-                break;
-            case 3:
-                // zone 3 (RIGHT)
-                apriltagOffset = 2 * apriltagSpacing;
-                break;
-        }
-        totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
         if (tilesDriveToCenter == 3) {
-            encoderDrive(1000, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 1);
-        } else {
+            switch (super.robot.zone) {
+                case 1:
+                    // zone 1 (LEFT)
+                    apriltagOffset = 0;
+                    break;
+                case 2:
+                    // zone 2 (CENTER)
+                    apriltagOffset = 1 * apriltagSpacing;
+                    // return because we are already in the right position
+                    break;
+                case 3:
+                    // zone 3 (RIGHT)
+                    apriltagOffset = 2 * apriltagSpacing;
+                    break;
+            }
+            totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
             encoderDrive(1000, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 1);
+        } else {
+            switch (super.robot.zone) {
+                case 1:
+                    // zone 1 (LEFT)
+                    apriltagOffset = 2 * apriltagSpacing;
+                    break;
+                case 2:
+                    // zone 2 (CENTER)
+                    apriltagOffset = 1 * apriltagSpacing;
+                    // return because we are already in the right position
+                    break;
+                case 3:
+                    // zone 3 (RIGHT)
+                    apriltagOffset = 0;
+                    break;
+            }
+            totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
+            encoderDrive(1000, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 2);
         }
         turnToHeading(-90);
         // place pixel
         goUp();
         adjustScissor(0.4, 0.2);
         setWristPosition(super.robot.wrist.wristPosition + 0.16);
-        encoderDrive(0500, -13, -13, -13, -13, 3);
+        encoderDrive(0500, -15, -15, -15, -15, 3);
         //waitScissor();
         openClaw();
-        //sleep(800);
-        encoderDrive(1000, 13, 13, 13, 13, 1);
+        sleep(800);
+        encoderDrive(1000, 4, 4, 4, 4, 1);
         //while(true); //temp !!
         goDown();
         if (parkDir == 'L') {
             // park left
             switch (super.robot.zone) {
                 case 1:
-                    encoderDrive(1000, travelDist, -travelDist, -travelDist, travelDist, 4);
+                    encoderDrive(1000, 15, -15, -15, 15,4);
                     break;
                 case 2:
-                    encoderDrive(1000, (travelDist + apriltagSpacing), -(travelDist + apriltagSpacing), -(travelDist + apriltagSpacing), (travelDist + apriltagSpacing), 4);
+                    encoderDrive(1000, (15+apriltagSpacing), -(15+apriltagSpacing), -(15+apriltagSpacing), (15+apriltagSpacing), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, (travelDist + (apriltagSpacing*2)), -(travelDist + (apriltagSpacing*2)), -(travelDist + (apriltagSpacing*2)), (travelDist + (apriltagSpacing*2)), 4);
+                    encoderDrive(1000, (15+(2*apriltagSpacing)), -(15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), 4);
             }
         } else {
             // park right
             switch (super.robot.zone) {
                 case 1:
-                    encoderDrive(1000, -travelDist, travelDist, travelDist, -travelDist, 4);
+                    encoderDrive(1000, -(15+(2*apriltagSpacing)), (15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), 4);
                     break;
                 case 2:
-                    encoderDrive(1000, -(travelDist + apriltagSpacing), (travelDist + apriltagSpacing), (travelDist + apriltagSpacing), -(travelDist + apriltagSpacing), 4);
+                    encoderDrive(1000, -(15+apriltagSpacing), (15+apriltagSpacing), (15+apriltagSpacing), -(15+apriltagSpacing), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, -(travelDist + (apriltagSpacing*2)), (travelDist + (apriltagSpacing*2)), (travelDist + (apriltagSpacing*2)), -(15 + (apriltagSpacing*2)), 4);
+                    encoderDrive(1000, 15, -15, -15, 15,4);
             }
         }
-        encoderDrive(1000, -20, -20, -20, -20, 6);
+        //encoderDrive(1000, -10, -10, -10, -10, 6);
 
     }
 }

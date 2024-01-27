@@ -95,25 +95,25 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
             // park left
             switch (super.robot.zone) {
                 case 1:
-                    encoderDrive(1000, 15, -15, -15, 15, 4);
+                    encoderDrive(1000, 15, -15, -15, 15,4);
                     break;
                 case 2:
-                    encoderDrive(1000, (15 + apriltagSpacing), -(15 + apriltagSpacing), -(15 + apriltagSpacing), (15 + apriltagSpacing), 4);
+                    encoderDrive(1000, (15+apriltagSpacing), -(15+apriltagSpacing), -(15+apriltagSpacing), (15+apriltagSpacing), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, (15 + (2 * apriltagSpacing)), -(15 + 2 * (apriltagSpacing)), -(15 + 2 * (apriltagSpacing)), (15 + 2 * (apriltagSpacing)), 4);
+                    encoderDrive(1000, (15+(2*apriltagSpacing)), -(15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), 4);
             }
         } else {
             // park right
             switch (super.robot.zone) {
                 case 1:
-                    encoderDrive(1000, -15, 15, 15, -15, 4);
+                    encoderDrive(1000, -(15+(2*apriltagSpacing)), (15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), 4);
                     break;
                 case 2:
-                    encoderDrive(1000, -(15 + apriltagSpacing), (15 + apriltagSpacing), (15 + apriltagSpacing), -(15 + apriltagSpacing), 4);
+                    encoderDrive(1000, -(15+apriltagSpacing), (15+apriltagSpacing), (15+apriltagSpacing), -(15+apriltagSpacing), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, -(15 + (2 * apriltagSpacing)), (15 + 2 * (apriltagSpacing)), (15 + 2 * (apriltagSpacing)), -(15 + 2 * (apriltagSpacing)), 4);
+                    encoderDrive(1000, 15, -15, -15, 15,4);
             }
         }
         //encoderDrive(1000, -10, -10, -10, -10, 6);
