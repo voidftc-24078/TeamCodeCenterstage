@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous(name = "BLUE_AUDIENCE_Auto")
 public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
-    private static final char parkDir = 'L';
+    private static final char parkDir = 'R';
     private static final int tilesDriveToCenter = 3;
 
     private float apriltagLeftDistance = 0f;

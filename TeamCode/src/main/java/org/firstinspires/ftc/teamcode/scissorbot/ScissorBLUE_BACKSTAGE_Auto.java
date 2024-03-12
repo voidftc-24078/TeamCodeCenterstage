@@ -12,6 +12,8 @@ public class ScissorBLUE_BACKSTAGE_Auto extends ScissorBaseAuto {
 
     private double totalApriltagOffset = 0;
 
+    static final double parkDist = 25;
+
     @Override
     public void runOpMode() {
         // initialize robot
@@ -32,7 +34,7 @@ public class ScissorBLUE_BACKSTAGE_Auto extends ScissorBaseAuto {
         }
         closeClaw();
         encoderDrive(0500,0,48,48,0, 15);
-        totalApriltagOffset = 2+apriltagOffset;
+        totalApriltagOffset = 3+apriltagOffset;
         encoderDrive(0500,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,totalApriltagOffset,15);
         turnToHeading(-90);
         // now place the pixel
@@ -50,25 +52,25 @@ public class ScissorBLUE_BACKSTAGE_Auto extends ScissorBaseAuto {
             // park left
             switch (super.robot.zone) {
                 case 1:
-                    encoderDrive(1000, 15, -15, -15, 15,4);
+                    encoderDrive(1000, parkDist, -parkDist, -parkDist, parkDist,4);
                     break;
                 case 2:
-                    encoderDrive(1000, (15+apriltagSpacing), -(15+apriltagSpacing), -(15+apriltagSpacing), (15+apriltagSpacing), 4);
+                    encoderDrive(1000, (parkDist+apriltagSpacing), -(parkDist+apriltagSpacing), -(parkDist+apriltagSpacing), (parkDist+apriltagSpacing), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, (15+(2*apriltagSpacing)), -(15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), 4);
+                    encoderDrive(1000, (parkDist+(2*apriltagSpacing)), -(parkDist+(2*apriltagSpacing)), -(parkDist+(2*apriltagSpacing)), (parkDist+(2*apriltagSpacing)), 4);
             }
         } else {
             // park right
             switch (super.robot.zone) {
                 case 1:
-                    encoderDrive(1000, -(15+(2*apriltagSpacing)), (15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), 4);
+                    encoderDrive(1000, -(parkDist+(2*apriltagSpacing)), (parkDist+2*(apriltagSpacing)), (parkDist+2*(apriltagSpacing)), -(parkDist+2*(apriltagSpacing)), 4);
                     break;
                 case 2:
-                    encoderDrive(1000, -(15+apriltagSpacing), (15+apriltagSpacing), (15+apriltagSpacing), -(15+apriltagSpacing), 4);
+                    encoderDrive(1000, -(parkDist+apriltagSpacing), (parkDist+apriltagSpacing), (parkDist+apriltagSpacing), -(parkDist+apriltagSpacing), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, 15, -15, -15, 15,4);
+                    encoderDrive(1000, parkDist, -parkDist, -parkDist, parkDist,4);
             }
         }
         //encoderDrive(1000, -20, -20,-20,-20, 6);

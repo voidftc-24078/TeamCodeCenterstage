@@ -4,8 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous(name = "RED_AUDIENCE_Auto")
 public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
-    private static final char parkDir = 'L';
-    private static final int tilesDriveToCenter = 1;
+    private static final char parkDir = 'R';
+    private static final int tilesDriveToCenter = 3;
 
     private float apriltagLeftDistance = 0f;
 
@@ -14,6 +14,8 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
     private float apriltagOffset = 0f; // default to left apriltag
 
     private double totalApriltagDistance = 0;
+
+    static final double parkDist = 25;
 
     @Override
     public void runOpMode() {
@@ -39,7 +41,7 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
                 encoderDrive(1000, 0, 40, 40, 0, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);
-                encoderDrive(1500, 92, -92, -92, 92, 10);
+                encoderDrive(1400, 92, -92, -92, 92, 5);
                 break;
         }
         if (tilesDriveToCenter == 3) {
@@ -95,25 +97,25 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
             // park left
             switch (super.robot.zone) {
                 case 1:
-                    encoderDrive(1000, 15, -15, -15, 15,4);
+                    encoderDrive(1000, parkDist-11, -(parkDist-11), -(parkDist-11), parkDist-11,4);
                     break;
                 case 2:
-                    encoderDrive(1000, (15+apriltagSpacing), -(15+apriltagSpacing), -(15+apriltagSpacing), (15+apriltagSpacing), 4);
+                    encoderDrive(1000, ((parkDist+apriltagSpacing)-11), -((parkDist+apriltagSpacing)-11), -((parkDist+apriltagSpacing)-11), ((parkDist+apriltagSpacing)-11), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, (15+(2*apriltagSpacing)), -(15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), 4);
+                    encoderDrive(1000, ((parkDist+(2*apriltagSpacing))-11), -((parkDist+(2*apriltagSpacing))-11), -((parkDist+(2*apriltagSpacing))-11), ((parkDist+(2*apriltagSpacing))-11), 4);
             }
         } else {
             // park right
             switch (super.robot.zone) {
                 case 1:
-                    encoderDrive(1000, -(15+(2*apriltagSpacing)), (15+2*(apriltagSpacing)), (15+2*(apriltagSpacing)), -(15+2*(apriltagSpacing)), 4);
+                    encoderDrive(1000, -((parkDist+(2*apriltagSpacing))-11), ((parkDist+(2*apriltagSpacing))-11), ((parkDist+(2*apriltagSpacing))-11), -((parkDist+(2*apriltagSpacing))-11), 4);
                     break;
                 case 2:
-                    encoderDrive(1000, -(15+apriltagSpacing), (15+apriltagSpacing), (15+apriltagSpacing), -(15+apriltagSpacing), 4);
+                    encoderDrive(1000, -((parkDist+apriltagSpacing)-11), ((parkDist+apriltagSpacing)-11), ((parkDist+apriltagSpacing)-11), -((parkDist+apriltagSpacing)-11), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, 15, -15, -15, 15,4);
+                    encoderDrive(1000, -(parkDist-11), (parkDist-11), (parkDist-11), -(parkDist-11),4);
             }
         }
         //encoderDrive(1000, -10, -10, -10, -10, 6);

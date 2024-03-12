@@ -186,7 +186,7 @@ public class CsDrivetrain {
             error = error - 360;
         }
         double velocity = error * 40 + 80 * Math.signum(error); // P control-ish
-        velocity = Range.clip(velocity, -2000, 2000);
+        velocity = Range.clip(velocity, -1800, 1800);
         fl.setVelocity(-velocity);
         fr.setVelocity(velocity);
         bl.setVelocity(-velocity);
