@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.scissorbot;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
+
+@Disabled
 @Autonomous(name = "BLUE_AUDIENCE_Auto")
 public class ScissorBLUE_AUDIENCE_Auto extends ScissorBaseAuto {
     private static final char parkDir = 'R';

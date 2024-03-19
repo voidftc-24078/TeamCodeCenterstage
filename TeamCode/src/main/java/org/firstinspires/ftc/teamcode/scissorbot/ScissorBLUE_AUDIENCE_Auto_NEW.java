@@ -2,10 +2,10 @@ package org.firstinspires.ftc.teamcode.scissorbot;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous(name = "RED_AUDIENCE_Auto")
-public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
+@Autonomous(name = "BLUE_AUDIENCE_Auto_NEW")
+public class ScissorBLUE_AUDIENCE_Auto_NEW extends ScissorBaseAuto {
     private static final char parkDir = 'R';
-    private static final int tilesDriveToCenter = 1;
+    private static final int tilesDriveToCenter = 3;
 
     private float apriltagLeftDistance = 0f;
 
@@ -25,23 +25,23 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
         switch (tilesDriveToCenter) {
             case 1:
                 // stay the closest to the wall
-                apriltagLeftDistance = 28f;
+                apriltagLeftDistance = 17.4f-(2*apriltagSpacing);
                 encoderDrive(0500, 2.3, 2.3, 2.3, 2.3, 15);
-                encoderDrive(1000, 72, -72, -72, 72, 6);
+                encoderDrive(1000, -72, 72, 72, -72, 6);
                 break;
             case 2:
                 // strafe left after placing the pixel on the spike mark
                 apriltagLeftDistance = -apriltagSpacing;
                 encoderDrive(0500, 25, 25, 25, 25, 10);
-                encoderDrive(1000, 72, -72, -72, 72, 6);
+                encoderDrive(1000, -72, 72, 72, -72, 6);
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
-                apriltagLeftDistance = 21f;
-                encoderDrive(1000, 0, 40, 40, 0, 4);
+                apriltagLeftDistance = 21f+(2*apriltagSpacing);
+                encoderDrive(1000, 40, 0, 0, 40, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);
-                encoderDrive(1400, 92, -92, -92, 92, 5);
+                encoderDrive(1400, -92, 92, 92, -92, 5);
                 break;
         }
         if (tilesDriveToCenter == 3) {
@@ -62,7 +62,7 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
             }
             totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
             encoderDrive(0500, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 8);
-        } else if (tilesDriveToCenter == 2) {
+        } else {
             switch (super.robot.zone) {
                 case 1:
                     // zone 1 (LEFT)
@@ -79,24 +79,6 @@ public class ScissorRED_AUDIENCE_Auto extends ScissorBaseAuto {
                     break;
             }
             totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
-            encoderDrive(0500, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 8);
-        } else {
-            switch (super.robot.zone) {
-                case 1:
-                    // zone 1 (LEFT)
-                    apriltagOffset = 0;
-                    break;
-                case 2:
-                    // zone 2 (CENTER)
-                    apriltagOffset = 1 * apriltagSpacing;
-                    // return because we are already in the right position
-                    break;
-                case 3:
-                    // zone 3 (RIGHT)
-                    apriltagOffset = 2 * apriltagSpacing;
-                    break;
-            }
-            totalApriltagDistance = apriltagLeftDistance - apriltagOffset;
             encoderDrive(0500, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 8);
         }
         turnToHeading(90);

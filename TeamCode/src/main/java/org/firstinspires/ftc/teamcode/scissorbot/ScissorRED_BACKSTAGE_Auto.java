@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 @Autonomous(name = "RED_BACKSTAGE_Auto")
 public class ScissorRED_BACKSTAGE_Auto extends ScissorBaseAuto {
-    private static final char parkDir = 'R';
+    private static final char parkDir = 'L';
 
     private float apriltagOffset = 0f;
 
@@ -71,7 +71,7 @@ public class ScissorRED_BACKSTAGE_Auto extends ScissorBaseAuto {
                     encoderDrive(1000, -(15+apriltagSpacing), (15+apriltagSpacing), (15+apriltagSpacing), -(15+apriltagSpacing), 4);
                     break;
                 case 3:
-                    encoderDrive(1000, 15, -15, -15, 15,4);
+                    encoderDrive(1000, -15, 15, 15, -15,4);
             }
         }
         //encoderDrive(1000, -20, -20,-20,-20, 6);
