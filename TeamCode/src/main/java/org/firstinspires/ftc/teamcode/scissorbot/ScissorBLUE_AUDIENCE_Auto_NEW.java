@@ -2,10 +2,10 @@ package org.firstinspires.ftc.teamcode.scissorbot;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-@Autonomous(name = "BLUE_AUDIENCE_Auto_NEW")
+@Autonomous(name = "BLUE_AUDIENCE_Auto")
 public class ScissorBLUE_AUDIENCE_Auto_NEW extends ScissorBaseAuto {
     private static final char parkDir = 'R';
-    private static final int tilesDriveToCenter = 3;
+    private static final int tilesDriveToCenter = 1;
 
     private float apriltagLeftDistance = 0f;
 
@@ -25,7 +25,7 @@ public class ScissorBLUE_AUDIENCE_Auto_NEW extends ScissorBaseAuto {
         switch (tilesDriveToCenter) {
             case 1:
                 // stay the closest to the wall
-                apriltagLeftDistance = 17.4f-(2*apriltagSpacing);
+                apriltagLeftDistance = 28f-(apriltagSpacing*2);
                 encoderDrive(0500, 2.3, 2.3, 2.3, 2.3, 15);
                 encoderDrive(1000, -72, 72, 72, -72, 6);
                 break;
@@ -37,7 +37,7 @@ public class ScissorBLUE_AUDIENCE_Auto_NEW extends ScissorBaseAuto {
                 break;
             case 3:
                 // go under the stage door, closer to the alliance's side
-                apriltagLeftDistance = 21f+(2*apriltagSpacing);
+                apriltagLeftDistance = 21f+(apriltagSpacing+2);
                 encoderDrive(1000, 40, 0, 0, 40, 4);
                 encoderDrive(1000, 36, 36, 36, 36, 3);
                 //encoderDrive(1000,56,56,56,56,13);
@@ -62,7 +62,7 @@ public class ScissorBLUE_AUDIENCE_Auto_NEW extends ScissorBaseAuto {
             }
             totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
             encoderDrive(0500, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, -totalApriltagDistance, 8);
-        } else {
+        } else if (tilesDriveToCenter == 2) {
             switch (super.robot.zone) {
                 case 1:
                     // zone 1 (LEFT)
@@ -79,6 +79,24 @@ public class ScissorBLUE_AUDIENCE_Auto_NEW extends ScissorBaseAuto {
                     break;
             }
             totalApriltagDistance = apriltagLeftDistance + apriltagOffset;
+            encoderDrive(0500, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 8);
+        } else {
+            switch (super.robot.zone) {
+                case 1:
+                    // zone 1 (LEFT)
+                    apriltagOffset = 0;
+                    break;
+                case 2:
+                    // zone 2 (CENTER)
+                    apriltagOffset = 1 * apriltagSpacing;
+                    // return because we are already in the right position
+                    break;
+                case 3:
+                    // zone 3 (RIGHT)
+                    apriltagOffset = 2 * apriltagSpacing;
+                    break;
+            }
+            totalApriltagDistance = apriltagLeftDistance - apriltagOffset;
             encoderDrive(0500, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, totalApriltagDistance, 8);
         }
         turnToHeading(90);
